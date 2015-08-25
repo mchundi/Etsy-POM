@@ -16,12 +16,12 @@ public class TC001{
 	@BeforeTest
 	public void beforeMethod() throws Exception{
 		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Sheet1");
+		new ExcelUtils().setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Sheet1");
 		testCaseName = this.toString();
-		testCaseName = ExcelUtils.getTestCaseName(this.toString());
+		testCaseName = new ExcelUtils().getTestCaseName(this.toString());
 		
-		testCaseRow = ExcelUtils.getRowContains(testCaseName,Constant.Col_TestCaseName);
-		testCaseAction = ExcelUtils.getCellData(testCaseRow, Constant.Col_Action);
+		testCaseRow = new ExcelUtils().getRowContains(testCaseName,Constant.Col_TestCaseName);
+		testCaseAction = new ExcelUtils().getCellData(testCaseRow, Constant.Col_Action);
 		
 		driver = BrowserAction.openBrowser("firefox");
 		driver.get(Constant.URL);
@@ -33,11 +33,11 @@ public class TC001{
 	public static void main() throws Exception{
 		
 		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-		AssertActions.assertPageTitle("Etsy - Your place to buy and sell all things handmade, vintage, and supplies",driver);
+		new AssertActions().assertPageTitle("Etsy - Your place to buy and sell all things handmade, vintage, and supplies",driver);
 		
 		if(testCaseAction.equalsIgnoreCase("Registration")){
-			Registration.registerUser(testCaseRow,driver);
-			Registration.verifySuccessfulRegistration();
+			new Registration().registerUser(testCaseRow,driver);
+			new Registration().verifySuccessfulRegistration();
 		}
 	}
 	

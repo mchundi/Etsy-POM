@@ -15,7 +15,7 @@ public class ExcelUtils {
 	private static XSSFRow Row;
 
 	//This method is to set the File path and to open the Excel file, Pass Excel Path and Sheetname as Arguments to this method
-	public static void setExcelFile(String Path,String SheetName) throws Exception {
+	public void setExcelFile(String Path,String SheetName) throws Exception {
 		try {
 			// Open the Excel file
 			FileInputStream ExcelFile = new FileInputStream(Path);
@@ -28,7 +28,7 @@ public class ExcelUtils {
 		}
 	}
 	//This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num
-	public static String getCellData(int RowNum, int ColNum) throws Exception{
+	public String getCellData(int RowNum, int ColNum) throws Exception{
 		try{
 			Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
 			String CellData = Cell.getStringCellValue();
@@ -39,7 +39,7 @@ public class ExcelUtils {
 	}
 	//This method is to write in the Excel cell, Row num and Col num are the parameters
 	@SuppressWarnings("static-access")
-	public static void setCellData(String Result,  int RowNum, int ColNum) throws Exception    {
+	public void setCellData(String Result,  int RowNum, int ColNum) throws Exception    {
 		try{
 			Row  = ExcelWSheet.getRow(RowNum);
 			Cell = Row.getCell(ColNum, Row.RETURN_BLANK_AS_NULL);
@@ -60,12 +60,12 @@ public class ExcelUtils {
 		}
 	}
     //this method is to navigate to the row that has the testcase name to be retrieved
-	public static int getRowContains(String sTestCaseName, int colNum) throws Exception{
+	public int getRowContains(String sTestCaseName, int colNum) throws Exception{
 		int i;
 		try {
-			int rowCount = ExcelUtils.getRowUsed();
+			int rowCount = new ExcelUtils().getRowUsed();
 			for ( i=0 ; i<rowCount; i++){
-				if  (ExcelUtils.getCellData(i,colNum).equalsIgnoreCase(sTestCaseName)){
+				if  (new ExcelUtils().getCellData(i,colNum).equalsIgnoreCase(sTestCaseName)){
 					break;
 				}
 			}
@@ -76,7 +76,7 @@ public class ExcelUtils {
 		}
 	}
 	//this method is used to get the count of rows that has data
-	public static int getRowUsed() throws Exception {
+	public int getRowUsed() throws Exception {
 		try{
 			int RowCount = ExcelWSheet.getLastRowNum();
 			System.out.println("Total number of Row used return as < " + RowCount + " >.");		
@@ -88,7 +88,7 @@ public class ExcelUtils {
 		}
 	}
 	
-	public static String getTestCaseName(String sTestCase)throws Exception{
+	public String getTestCaseName(String sTestCase)throws Exception{
 		String value = sTestCase;
 		try{
 			int posi = value.indexOf("@");

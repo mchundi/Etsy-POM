@@ -14,10 +14,5 @@ public class Constant {
 		public static final int Col_Gender = 5;
 		public static final int Col_FirstName = 6;
 		public static final int Col_LastName = 7;
-		public static final int Col_Address = 8;
-		public static final int Col_City = 9;
-		public static final int Col_Country = 10;
-		public static final int Col_Phone = 11;
-		public static final int Col_Email = 12;
 		public static final int Col_Result = 13;
 	}

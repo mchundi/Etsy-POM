@@ -10,7 +10,7 @@ public class HomePage{
 	private static WebElement element = null;
 	private static WebDriver driver = BrowserAction.driver;
 	
-	public static WebElement linkRegistration() throws Exception{
+	public WebElement linkRegistration() throws Exception{
 		try{ 
        	 element = driver.findElement(By.xpath(".//*[@id='account']/a"));
             System.out.println("My Account link is found on the Home Page");
